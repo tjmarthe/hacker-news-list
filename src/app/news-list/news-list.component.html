@@ -1,0 +1,32 @@
+
+<div>
+
+  <mat-form-field>
+    <input matInput placeholder="Search columns"  search (keyup)="applyFilter($event)"#input>
+</mat-form-field>
+  <mat-table [dataSource]="dataSource">
+
+  <ng-container matColumnDef="title">
+    <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
+    <mat-cell *matCellDef="let article"> {{article.title}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="url">
+    <mat-header-cell *matHeaderCellDef> Link </mat-header-cell>
+    <mat-cell *matCellDef="let article"> {{article.url}}
+      <a href="{{article.url}}">Go to story</a>
+    </mat-cell>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columns"></tr>
+  <tr mat-row *matRowDef="let row; columns: columns;"></tr>
+
+  </mat-table>
+  <!-- <mat-grid-list cols="2" rowHeight="100px" enableFilter= true pagination = true *ngFor="let i of newsList" >
+   <mat-grid-tile>
+    <app-article-component [article]="i"></app-article-component>
+  </mat-grid-tile>
+  </mat-grid-list>-->
+  <mat-paginator #paginator [length]=500 [pageSize]="10" [pageSizeOptions]="[10,100,500]"> </mat-paginator>
+</div>
+
